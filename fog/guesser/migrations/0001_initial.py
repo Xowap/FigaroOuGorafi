@@ -11,8 +11,8 @@ class Migration(SchemaMigration):
         # Adding model 'Feed'
         db.create_table('guesser_feed', (
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('url', self.gf('django.db.models.fields.URLField')(unique=True, max_length=200)),
-            ('source', self.gf('django.db.models.fields.related.ForeignKey')(related_name='feeds', to=orm['guesser.Source'])),
+            ('url', self.gf('django.db.models.fields.URLField')(max_length=200, unique=True)),
+            ('source', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['guesser.Source'], related_name='feeds')),
         ))
         db.send_create_signal('guesser', ['Feed'])
 
@@ -28,8 +28,8 @@ class Migration(SchemaMigration):
         db.create_table('guesser_headline', (
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('title', self.gf('django.db.models.fields.CharField')(max_length=500)),
-            ('url', self.gf('django.db.models.fields.URLField')(max_length=1000)),
-            ('feed', self.gf('django.db.models.fields.related.ForeignKey')(related_name='headlines', to=orm['guesser.Feed'])),
+            ('url', self.gf('django.db.models.fields.URLField')(max_length=1000, unique=True)),
+            ('feed', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['guesser.Feed'], related_name='headlines')),
         ))
         db.send_create_signal('guesser', ['Headline'])
 
@@ -55,9 +55,9 @@ class Migration(SchemaMigration):
         # Adding model 'VoteStats'
         db.create_table('guesser_votestats', (
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('headline', self.gf('django.db.models.fields.related.OneToOneField')(related_name='stats', unique=True, to=orm['guesser.Headline'])),
-            ('succeeded', self.gf('django.db.models.fields.IntegerField')()),
-            ('failed', self.gf('django.db.models.fields.IntegerField')()),
+            ('headline', self.gf('django.db.models.fields.related.OneToOneField')(to=orm['guesser.Headline'], unique=True, related_name='stats')),
+            ('succeeded', self.gf('django.db.models.fields.IntegerField')(default=0)),
+            ('failed', self.gf('django.db.models.fields.IntegerField')(default=0)),
         ))
         db.send_create_signal('guesser', ['VoteStats'])
 
@@ -89,15 +89,15 @@ class Migration(SchemaMigration):
         'guesser.feed': {
             'Meta': {'object_name': 'Feed'},
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'source': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'feeds'", 'to': "orm['guesser.Source']"}),
-            'url': ('django.db.models.fields.URLField', [], {'unique': 'True', 'max_length': '200'})
+            'source': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['guesser.Source']", 'related_name': "'feeds'"}),
+            'url': ('django.db.models.fields.URLField', [], {'max_length': '200', 'unique': 'True'})
         },
         'guesser.headline': {
             'Meta': {'object_name': 'Headline'},
-            'feed': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'headlines'", 'to': "orm['guesser.Feed']"}),
+            'feed': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['guesser.Feed']", 'related_name': "'headlines'"}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'title': ('django.db.models.fields.CharField', [], {'max_length': '500'}),
-            'url': ('django.db.models.fields.URLField', [], {'max_length': '1000'})
+            'url': ('django.db.models.fields.URLField', [], {'max_length': '1000', 'unique': 'True'})
         },
         'guesser.source': {
             'Meta': {'object_name': 'Source'},
@@ -119,10 +119,10 @@ class Migration(SchemaMigration):
         },
         'guesser.votestats': {
             'Meta': {'object_name': 'VoteStats'},
-            'failed': ('django.db.models.fields.IntegerField', [], {}),
-            'headline': ('django.db.models.fields.related.OneToOneField', [], {'related_name': "'stats'", 'unique': 'True', 'to': "orm['guesser.Headline']"}),
+            'failed': ('django.db.models.fields.IntegerField', [], {'default': '0'}),
+            'headline': ('django.db.models.fields.related.OneToOneField', [], {'to': "orm['guesser.Headline']", 'unique': 'True', 'related_name': "'stats'"}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'succeeded': ('django.db.models.fields.IntegerField', [], {})
+            'succeeded': ('django.db.models.fields.IntegerField', [], {'default': '0'})
         }
     }
 

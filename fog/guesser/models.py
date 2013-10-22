@@ -28,7 +28,7 @@ class Source(models.Model):
 @python_2_unicode_compatible
 class Headline(models.Model):
     title = models.CharField(max_length=500)
-    url = models.URLField(max_length=1000)
+    url = models.URLField(max_length=1000, unique=True)
     feed = models.ForeignKey('Feed', related_name='headlines')
 
     def __str__(self):
@@ -59,8 +59,8 @@ class Vote(models.Model):
 @python_2_unicode_compatible
 class VoteStats(models.Model):
     headline = models.OneToOneField('Headline', related_name='stats')
-    succeeded = models.IntegerField()
-    failed = models.IntegerField()
+    succeeded = models.IntegerField(default=0)
+    failed = models.IntegerField(default=0)
 
     def __str__(self):
         return "<Vote for {} +{} -{}>".format(self.headline.title, self.succeeded, self.failed)
@@ -90,4 +90,9 @@ class VoteStats(models.Model):
 
         stat.save()
 
+    @staticmethod
+    def create_stats_on_new_headline(instance, **kwargs):
+        VoteStats.objects.create(headline=instance)
+
 models.signals.post_save.connect(VoteStats.re_calculate_stats_on_new_vote, sender=Vote)
+models.signals.post_save.connect(VoteStats.create_stats_on_new_headline, sender=Headline)
