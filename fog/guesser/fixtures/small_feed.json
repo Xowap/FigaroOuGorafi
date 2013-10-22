@@ -1,0 +1,11 @@
+[
+{
+  "pk": 1, 
+  "model": "guesser.headline", 
+  "fields": {
+    "url": "http://www.legorafi.fr/2013/10/22/il-hesite-a-liker-un-commentaire-de-son-ex-sur-le-harcelement-de-rue-de-peur-que-cela-soit-pris-pour-du-harcelement/?utm_source=rss&utm_medium=rss&utm_campaign=il-hes", 
+    "feed": 2, 
+    "title": "Il h\u00e9site \u00e0 liker un commentaire de son ex sur le harc\u00e8lement de rue de peur que cela soit pris pour du harc\u00e8lement"
+  }
+}
+]

@@ -1,0 +1,34 @@
+[
+{
+  "pk": 1, 
+  "model": "guesser.feed", 
+  "fields": {
+    "url": "http://rss.lefigaro.fr/lefigaro/laune", 
+    "source": 1
+  }
+},
+{
+  "pk": 2, 
+  "model": "guesser.feed", 
+  "fields": {
+    "url": "http://www.legorafi.fr/feed/", 
+    "source": 2
+  }
+},
+{
+  "pk": 1, 
+  "model": "guesser.source", 
+  "fields": {
+    "code": "figaro", 
+    "name": "Figaro"
+  }
+},
+{
+  "pk": 2, 
+  "model": "guesser.source", 
+  "fields": {
+    "code": "gorafi", 
+    "name": "Gorafi"
+  }
+}
+]
