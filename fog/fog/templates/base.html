@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+{% load i18n %}
+<head>
+    <meta charset="utf-8" />
+    <title>{% trans "Figaro ou Gorafi ?" %}</title>
+
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootswatch/3.0.0/readable/bootstrap.min.css" />
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+
+    <style>
+        body {
+            padding-top: 70px;
+        }
+
+        .headline-text {
+            overflow: hidden;
+        }
+
+        .headline-actions {
+            float: right;
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-default navbar-fixed-top navbar-inverse" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">{% trans "Figaro ou Gorafi&nbsp;?" %}</a>
+        </div>
+
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li class="active"><a href="#">{% trans "Jeu" %}</a></li>
+                <li><a href="#">{% trans "Stats" %}</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="jumbotron">
+    <div class="container">
+        <div class="headline-actions">
+            <div>
+                <button class="btn btn-primary" type="button">Figaro</button>
+            </div>
+            <div>
+                <button class="btn btn-primary" type="button">Gorafi</button>
+            </div>
+        </div>
+        <div class="headline-text">
+            Un problème de signalisation sur la ligne 6 du métro empêche Jay-Z de se
+            rendre à son concert à Bercy
+        </div>
+    </div>
+</div>
+</body>
+</html>
