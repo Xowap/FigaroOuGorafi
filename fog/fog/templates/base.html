@@ -20,6 +20,11 @@
         .headline-actions {
             float: right;
         }
+        
+        .score-view {
+            margin-left: 10px;
+            text-align: right;
+        }
     </style>
 </head>
 <body>
@@ -41,16 +46,30 @@
 <div class="jumbotron">
     <div class="container">
         <div class="headline-actions">
-            <div>
-                <button class="btn btn-primary" type="button">Figaro</button>
-            </div>
-            <div>
-                <button class="btn btn-primary" type="button">Gorafi</button>
+            <div class="btn-group-vertical">
+                <button class="btn btn-primary btn-lg" type="button">Figaro</button>
+                <button class="btn btn-primary btn-lg" type="button">Gorafi</button>
             </div>
         </div>
         <div class="headline-text">
             Un problème de signalisation sur la ligne 6 du métro empêche Jay-Z de se
             rendre à son concert à Bercy
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div>
+        <div class="pull-right score-view">
+            50% (5/10)
+        </div>
+        <div class="progress">
+            <div class="progress-bar progress-bar-success" style="width: 50%;">
+                <span class="sr-only">50% Good</span>
+            </div>
+            <div class="progress-bar progress-bar-danger" style="width: 50%;">
+                <span class="sr-only">50% Bad</span>
+            </div>
         </div>
     </div>
 </div>
