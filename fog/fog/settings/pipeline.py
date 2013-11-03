@@ -3,7 +3,9 @@
 PIPELINE_JS = {
     'libs': {
         'source_filenames': (
+            'lodash/dist/lodash.js',
             'jquery/jquery.js',
+            'angular/angular.js',
         ),
         'output_filename': 'libs.js',
     }
